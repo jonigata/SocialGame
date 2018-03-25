@@ -7,6 +7,12 @@ public class Page : MonoBehaviour {
     [SerializeField] PageGroup group;
 
     void OnEnable() {
-        group.Select(transform);
+        if (group != null) {
+            group.Select(transform);
+        }
+    }
+
+    public void SetPageGroup(PageGroup group) {
+        this.group = group;
     }
 }

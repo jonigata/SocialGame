@@ -21,23 +21,22 @@ public class Router : MonoBehaviour {
     [NonSerialized] public BehaviorSubject<Plan> leave =
         new BehaviorSubject<Plan>(new Plan());
 
-    public virtual void SetParentRouter(Router r) {}
-    
-    protected void Proceed(BehaviorSubject<Plan> subject, Plan plan) {
-        if (plan.path.Count == 0) { return; }
+    protected void Proceed(BehaviorSubject<Plan> subject, Plan plan, int n) {
+        if (plan.path.Count < n) { return; }
 
         var newPlan = new Plan();
         newPlan.path = new ArraySegment<string>(
-            plan.path.Array, plan.path.Offset + 1, plan.path.Count - 1);
-        newPlan.keep = plan.keep -1;
+            plan.path.Array, plan.path.Offset + n, plan.path.Count - n);
+        newPlan.keep = plan.keep - n;
         subject.OnNext(newPlan);
     }
 
-    protected void ProceedEnter(Plan plan) {
-        Proceed(enter, plan);
+    protected void ProceedEnter(Plan plan, int n) {
+        Proceed(enter, plan, n);
     }
 
-    protected void ProceedLeave(Plan plan) {
-        Proceed(leave, plan);
+    protected void ProceedLeave(Plan plan, int n) {
+        Proceed(leave, plan, n);
     }
+
 }

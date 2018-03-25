@@ -9,24 +9,32 @@ using UniRx;
 using Zenject;
 
 public class NodeRouter : Router {
-    [SerializeField] Router parentRouter;
-    [SerializeField] string nodeName;
-
-    [SerializeField] UnityEvent onEnter;
-    [SerializeField] UnityEvent onLeave;
+    [Serializable]
+    public struct Triggers {
+        public UnityEvent onEnter;
+        public UnityEvent onLeave;
+    }
+    
+    [SerializeField] Triggers triggers;
     [SerializeField] GameObject activates;
     
+    Router parentRouter;
+
     void Start() {
+        if (transform.parent == null) { return; }
+        parentRouter = transform.parent.GetComponent<Router>();
         if (parentRouter == null) { return; }
+
+        var nodeName = gameObject.name;
 
         parentRouter.enter
             .Where(plan => plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
                     Debug.Log("NodeRouter(Enter): " + nodeName);
-                    onEnter.Invoke();
+                    triggers.onEnter.Invoke();
                     if (activates != null) { activates.SetActive(true); }
-                    ProceedEnter(plan);
+                    ProceedEnter(plan, 1);
                 })
             .AddTo(this);
 
@@ -35,13 +43,11 @@ public class NodeRouter : Router {
             .Subscribe(
                 plan => {
                     Debug.Log("NodeRouter(Leave): " + nodeName);
-                    ProceedLeave(plan);
+                    ProceedLeave(plan, 1);
                     if (activates != null) { activates.SetActive(false); }
-                    onLeave.Invoke();
+                    triggers.onLeave.Invoke();
                 })
             .AddTo(this);
     }
-
-    public override void SetParentRouter(Router r) { parentRouter = r; }
 
 }

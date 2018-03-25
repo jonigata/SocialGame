@@ -23,3 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Intermission.unity
     guid: 818d81289847fa449a63a302f404f162
+  - enabled: 1
+    path: Assets/Scenes/Home/StoryPage/StoryPage.unity
+    guid: f8217254e4a4fa645bbbdfd1a03e778f
+  - enabled: 1
+    path: Assets/Scenes/Home/CoordinatePage/CoordinatePage.unity
+    guid: b339671d9dc40274795d1c800a4c950b
+  - enabled: 1
+    path: Assets/Scenes/Home/TrainingPage/TrainingPage.unity
+    guid: 601534a0cca3f1746b5702cd14fad696
+  - enabled: 1
+    path: Assets/Scenes/Home/SocialPage/SocialPage.unity
+    guid: 20822bf902eb30a49ac3ecb74256b954
+  - enabled: 1
+    path: Assets/Scenes/Home/ShopPage/ShopPage.unity
+    guid: db8465c601a33364d9e187ec81e87aa2

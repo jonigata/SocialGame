@@ -5,6 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Jump : MonoBehaviour {
     public void JumpTo(string s) {
-        TopLevelRouter.MoveTo(s);
+        TopLevelRouter.JumpTo(s);
     }
 }

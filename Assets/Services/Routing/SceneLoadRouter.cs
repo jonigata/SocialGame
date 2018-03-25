@@ -10,9 +10,17 @@ public class SceneLoadRouter : Router {
     [SerializeField] SceneLoadQueue queue;
     public SceneObject scene;
     [SerializeField] LoadSceneMode mode;
-    [SerializeField] Router parentRouter;
+
+    Router parentRouter;
 
     void Start() {
+        parentRouter = transform.parent.GetComponent<Router>();
+        if (parentRouter == null) {
+            Debug.LogWarningFormat(
+                "SceneLoadRouter '{0}' has no parent Router", gameObject.name);
+            return;
+        }
+
         parentRouter.leave
             .Where(plan => plan.MatchHead(scene.name))
             .Subscribe(
@@ -20,9 +28,9 @@ public class SceneLoadRouter : Router {
                     if (plan.keep <= 0) {
                         queue.Post(
                             SceneLoadQueue.Request.Type.Unload, scene, mode,
-                            () => { ProceedLeave(plan); });
+                            () => { ProceedLeave(plan, 1); });
                     } else {
-                        ProceedLeave(plan);
+                        ProceedLeave(plan, 1);
                     }
                 })
             .AddTo(this);
@@ -31,7 +39,7 @@ public class SceneLoadRouter : Router {
             .Where(plan => plan.MatchHead(scene.name))
             .Subscribe(
                 plan => {
-                    ProceedEnter(plan);
+                    ProceedEnter(plan, 1);
                     if (plan.keep <= 0) {
                         queue.Post(
                             SceneLoadQueue.Request.Type.Load, scene, mode,
@@ -42,5 +50,4 @@ public class SceneLoadRouter : Router {
 
     }
 
-    public override void SetParentRouter(Router r) { parentRouter = r; }
 }

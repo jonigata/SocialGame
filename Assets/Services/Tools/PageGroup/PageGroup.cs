@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PageGroup : MonoBehaviour {
@@ -35,5 +36,11 @@ public class PageGroup : MonoBehaviour {
         a();
     }
 
+    public void SetPages(Page[] pages) {
+        this.pages = pages.Select(x => x.transform).ToArray();
+        foreach (var page in pages) {
+            page.SetPageGroup(this);
+        }
+    }
     
 }

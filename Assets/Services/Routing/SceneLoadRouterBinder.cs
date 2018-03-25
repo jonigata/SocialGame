@@ -7,17 +7,34 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class SceneLoadRouterBinder : MonoBehaviour {
-    [SerializeField] Router[] routers;
+public class SceneLoadRouterBinder : Router {
+    [SerializeField] Router fallbackRouter;
+    Router parentRouter;
     
     void Awake() {
         var a = FindObjectsOfType<SceneLoadRouter>();
-        var parentRouter =
+        parentRouter =
             a.FirstOrDefault(x => x.scene.name == gameObject.scene.name);
-
-        foreach (var router in routers) {
-            router.SetParentRouter(parentRouter);
+        if (parentRouter == null) {
+            parentRouter = fallbackRouter;
         }
+        if (parentRouter == null) { return; }
+
+        // translucent
+        
+        parentRouter.enter
+            .Subscribe(
+                plan => {
+                    this.enter.OnNext(plan);
+                })
+            .AddTo(this);
+
+        parentRouter.leave
+            .Subscribe(
+                plan => {
+                    this.leave.OnNext(plan);
+                })
+            .AddTo(this);
     }
 
 }
