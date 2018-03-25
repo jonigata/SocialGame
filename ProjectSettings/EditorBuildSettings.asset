@@ -18,11 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Parts/StandardFooter.unity
     guid: 7b94c54e0443a224fbfa0531e0d6fe2f
   - enabled: 1
-    path: Assets/Scenes/Home/Home.unity
-    guid: 1bb36e41694aa3543b8dbd98164d202b
-  - enabled: 1
     path: Assets/Scenes/Intermission.unity
     guid: 818d81289847fa449a63a302f404f162
+  - enabled: 1
+    path: Assets/Scenes/Home/Home.unity
+    guid: 1bb36e41694aa3543b8dbd98164d202b
   - enabled: 1
     path: Assets/Scenes/Home/StoryPage/StoryPage.unity
     guid: f8217254e4a4fa645bbbdfd1a03e778f
