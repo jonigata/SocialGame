@@ -21,11 +21,25 @@ public class NodeRouter : Router {
     Router parentRouter;
 
     void Start() {
+        Debug.Log("NodeRouter.Start");
         if (transform.parent == null) { return; }
         parentRouter = transform.parent.GetComponent<Router>();
         if (parentRouter == null) { return; }
 
+        MountTo(parentRouter);
+    }
+
+    public override void MountTo(Router parentRouter) {
         var nodeName = gameObject.name;
+
+        parentRouter.mount
+            .Where(mount => mount.MatchHead(nodeName))
+            .Subscribe(
+                mount => {
+                    mount.router.MountTo(this);
+                    ProceedMount(mount, 1);
+                })
+            .AddTo(this);
 
         parentRouter.enter
             .Where(plan => plan.MatchHead(nodeName))

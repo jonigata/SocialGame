@@ -11,6 +11,16 @@ public class MockRouter : Router {
     void Start() {
         var lp = leadPath.Split('/');
 
+        mount
+            .Where(x => Match(x.path, lp))
+            .Subscribe(
+                mount => {
+                    Debug.Log("MockRouter(Mount)");
+                    mount.router.MountTo(this);
+                    ProceedMount(mount, lp.Length);
+                })
+            .AddTo(this);
+
         enter
             .Where(x => Match(x.path, lp))
             .Subscribe(

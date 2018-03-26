@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,28 @@ public class Router : MonoBehaviour {
             }
             return path.Array[path.Offset] == s;
         }
+        public void Print() {
+            Debug.Log(string.Join(",", path.ToArray()));
+        }
+    }
+
+    public struct Mount {
+        public ArraySegment<string>    path;
+        public Router                  router;
+        public bool MatchHead(string s) {
+            if (path.Array == null || path.Array.Length <= path.Offset ) {
+                return false;
+            }
+            return path.Array[path.Offset] == s;
+        }
     }
 
     [NonSerialized] public BehaviorSubject<Plan> enter =
         new BehaviorSubject<Plan>(new Plan());
     [NonSerialized] public BehaviorSubject<Plan> leave =
         new BehaviorSubject<Plan>(new Plan());
+    [NonSerialized] public BehaviorSubject<Mount> mount =
+        new BehaviorSubject<Mount>(new Mount());
 
     protected void Proceed(BehaviorSubject<Plan> subject, Plan plan, int n) {
         if (plan.path.Count < n) { return; }
@@ -38,5 +55,17 @@ public class Router : MonoBehaviour {
     protected void ProceedLeave(Plan plan, int n) {
         Proceed(leave, plan, n);
     }
+
+    protected void ProceedMount(Mount mount, int n) {
+        if (mount.path.Count < n) { return; }
+
+        var newMount = new Mount();
+        newMount.path = new ArraySegment<string>(
+            mount.path.Array, mount.path.Offset + n, mount.path.Count - n);
+        newMount.router = mount.router;
+        this.mount.OnNext(newMount);
+    }
+
+    public virtual void MountTo(Router router) {}
 
 }

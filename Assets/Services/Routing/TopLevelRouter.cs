@@ -14,6 +14,8 @@ public class TopLevelRouter : MockUpToolBase {
     void Awake() {
         DisableIfNotHighestPriority<TopLevelRouter>();
         if (gameObject.activeSelf) {
+            Debug.Log(gameObject.scene.name);
+            Debug.Log(gameObject.name);
             Assert.IsNull(self);
             self = this;
         }
@@ -48,5 +50,13 @@ public class TopLevelRouter : MockUpToolBase {
         currPlan.keep = keep;
         prevPath = currPlan.path;
         self.concreteRouter.enter.OnNext(currPlan);
+    }
+
+    public static void Mount(string path, Router router) {
+        var mount = new Mount();
+        var currPath = path.Split('/');
+        mount.path = new ArraySegment<string>(currPath, 0, currPath.Length);
+        mount.router = router;
+        self.concreteRouter.mount.OnNext(mount);
     }
 }

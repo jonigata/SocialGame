@@ -21,10 +21,21 @@ public class SceneLoadRouter : Router {
             return;
         }
 
+        parentRouter.mount
+            .Where(mount => mount.MatchHead(scene.name))
+            .Subscribe(
+                mount => {
+                    Debug.Log("SceneLoadRouter.mount");
+                    mount.router.MountTo(this);
+                    ProceedMount(mount, 1);
+                })
+            .AddTo(this);
+
         parentRouter.leave
             .Where(plan => plan.MatchHead(scene.name))
             .Subscribe(
                 plan => {
+                    Debug.Log("SceneLoadRouter.leave");
                     if (plan.keep <= 0) {
                         queue.Post(
                             SceneLoadQueue.Request.Type.Unload, scene, mode,
@@ -39,6 +50,7 @@ public class SceneLoadRouter : Router {
             .Where(plan => plan.MatchHead(scene.name))
             .Subscribe(
                 plan => {
+                    Debug.Log("SceneLoadRouter.enter");
                     ProceedEnter(plan, 1);
                     if (plan.keep <= 0) {
                         queue.Post(

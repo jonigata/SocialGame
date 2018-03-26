@@ -7,24 +7,29 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class SceneLoadRouterBinder : Router {
-    [SerializeField] Router fallbackRouter;
-    Router parentRouter;
+public class RouterJunction : Router {
+    [SerializeField] string mountTo;
     
-    void Awake() {
-        var a = FindObjectsOfType<SceneLoadRouter>();
-        parentRouter =
-            a.FirstOrDefault(x => x.scene.name == gameObject.scene.name);
-        if (parentRouter == null) {
-            parentRouter = fallbackRouter;
-        }
-        if (parentRouter == null) { return; }
+    void Start() {
+        Debug.Log("RouterJunction.Start");
+        TopLevelRouter.Mount(mountTo, this);
+    }
+
+    public override void MountTo(Router parentRouter) {
+        Debug.Log("RouterJunction.MountTo");
 
         // translucent
+        parentRouter.mount
+            .Subscribe(
+                mount => {
+                    this.mount.OnNext(mount);
+                })
+            .AddTo(this);
         
         parentRouter.enter
             .Subscribe(
                 plan => {
+                    plan.Print();
                     this.enter.OnNext(plan);
                 })
             .AddTo(this);
@@ -36,5 +41,6 @@ public class SceneLoadRouterBinder : Router {
                 })
             .AddTo(this);
     }
+
 
 }
