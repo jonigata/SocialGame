@@ -3,6 +3,6 @@ using UnityEngine;
 
 public class MockUpTool : MockUpToolBase {
     void Awake() {
-        DisableIfNotHighestPriority<MockUpTool>();
+        DisableUnlessHighestPriority<MockUpTool>();
     }
 }

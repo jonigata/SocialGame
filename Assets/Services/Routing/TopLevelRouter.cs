@@ -12,10 +12,8 @@ public class TopLevelRouter : MockUpToolBase {
     static ArraySegment<string> prevPath;
 
     void Awake() {
-        DisableIfNotHighestPriority<TopLevelRouter>();
+        DisableUnlessHighestPriority<TopLevelRouter>();
         if (gameObject.activeSelf) {
-            Debug.Log(gameObject.scene.name);
-            Debug.Log(gameObject.name);
             Assert.IsNull(self);
             self = this;
         }

@@ -433,10 +433,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 542187165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8521cacc2e8b79a44ae531f56326e8a9, type: 3}
+  m_Script: {fileID: 11500000, guid: af11c1f3b68c40d498e6ae9a0a889e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallbackRouter: {fileID: 131983709}
+  mountTo: Home
 --- !u!4 &542187167
 Transform:
   m_ObjectHideFlags: 0
@@ -516,7 +516,6 @@ GameObject:
   m_Component:
   - component: {fileID: 807853292}
   - component: {fileID: 807853294}
-  - component: {fileID: 807853293}
   m_Layer: 0
   m_Name: Starter
   m_TagString: Untagged
@@ -537,19 +536,6 @@ Transform:
   m_Father: {fileID: 224275494}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &807853293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 807853291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5178a6f309bee9942958e0d7dd1207cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  priority: 1
-  concreteRouter: {fileID: 0}
 --- !u!114 &807853294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2472b2c24588f644297db5d017a9ed2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Shop
+  path: Home/Shop
 --- !u!1 &871477887
 GameObject:
   m_ObjectHideFlags: 0

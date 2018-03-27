@@ -4,7 +4,7 @@ using UnityEngine;
 public class MockUpToolBase : Router {
     [SerializeField] int priority;
 
-    protected void DisableIfNotHighestPriority<T>() where T: MockUpToolBase {
+    protected void DisableUnlessHighestPriority<T>() where T: MockUpToolBase {
         var a = FindObjectsOfType<T>();
         foreach (var e in a) {
             if (e.priority < priority) {

@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class RouterJunction : Router {
+public class RouterJunction : NodeRouter {
     [SerializeField] string mountTo;
     
     void Start() {
+        // base.Start(); 必要ない
         Debug.Log("RouterJunction.Start");
         TopLevelRouter.Mount(mountTo, this);
     }
