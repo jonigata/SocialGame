@@ -17,8 +17,18 @@ public class MockRouter : Router {
             .Subscribe(
                 mount => {
                     Debug.Log("MockRouter(Mount)");
-                    mount.router.MountTo(this);
+                    if (mount.path.Count == lp.Length) {
+                        mount.router.MountTo(this);
+                    }
                     ProceedMount(mount, lp.Length);
+                })
+            .AddTo(this);
+
+        parentRouter.leave
+            .Subscribe(
+                plan => {
+                    Debug.Log("MockRouter(Leave)");
+                    ProceedLeave(plan, lp.Length);
                 })
             .AddTo(this);
 
@@ -28,14 +38,6 @@ public class MockRouter : Router {
                 plan => {
                     Debug.Log("MockRouter(Enter)");
                     ProceedEnter(plan, lp.Length);
-                })
-            .AddTo(this);
-
-        parentRouter.leave
-            .Subscribe(
-                plan => {
-                    Debug.Log("MockRouter(Leave)");
-                    ProceedLeave(plan, lp.Length);
                 })
             .AddTo(this);
     }

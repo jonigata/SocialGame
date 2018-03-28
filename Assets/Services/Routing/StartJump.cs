@@ -8,6 +8,6 @@ public class StartJump : MonoBehaviour {
 
     void Start() {
         Debug.Log("StartJump.JumpTo " + path);
-        TopLevelRouter.JumpTo(path);
+        Routing.JumpTo(path);
     }
 }

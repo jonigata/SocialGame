@@ -47,8 +47,21 @@ public class NodeRouter : Router {
             .Where(mount => mount.MatchHead(nodeName))
             .Subscribe(
                 mount => {
-                    mount.router.MountTo(this);
+                    Debug.Log("NodeRouter(Mount)");
+                    if (mount.path.Count == 1) {
+                        mount.router.MountTo(this);
+                    }
                     ProceedMount(mount, 1);
+                })
+            .AddTo(this);
+
+        parentRouter.leave
+            .Where(plan => plan.MatchHead(nodeName))
+            .Subscribe(
+                plan => {
+                    Debug.Log("NodeRouter(Leave): " + nodeName);
+                    ProceedLeave(plan, 1);
+                    triggers.OnLeave();
                 })
             .AddTo(this);
 
@@ -62,15 +75,6 @@ public class NodeRouter : Router {
                 })
             .AddTo(this);
 
-        parentRouter.leave
-            .Where(plan => plan.MatchHead(nodeName))
-            .Subscribe(
-                plan => {
-                    Debug.Log("NodeRouter(Leave): " + nodeName);
-                    ProceedLeave(plan, 1);
-                    triggers.OnLeave();
-                })
-            .AddTo(this);
     }
 
 }
