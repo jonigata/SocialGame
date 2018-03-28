@@ -7,8 +7,8 @@ using UniRx;
 
 public class Router : MonoBehaviour {
     public struct Plan {
-        public ArraySegment<string>    path;
-        public int                     keep;
+        public ArraySegment<string> path;
+        public int                  keep;
         public bool MatchHead(string s) {
             if (path.Array == null || path.Array.Length <= path.Offset ) {
                 return false;

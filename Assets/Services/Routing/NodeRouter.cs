@@ -9,14 +9,25 @@ using UniRx;
 using Zenject;
 
 public class NodeRouter : Router {
+    // TODO: TriggerableRouterを作る
     [Serializable]
     public struct Triggers {
         public UnityEvent onEnter;
         public UnityEvent onLeave;
+        public GameObject activateTarget;
+
+
+        public void OnEnter() {
+            onEnter.Invoke();
+            if (activateTarget != null) { activateTarget.SetActive(true); }
+        }
+        public void OnLeave() {
+            if (activateTarget != null) { activateTarget.SetActive(false); }
+            onLeave.Invoke();
+        }
     }
     
-    [SerializeField] Triggers triggers;
-    [SerializeField] GameObject activates;
+    [SerializeField] protected Triggers triggers;
     
     Router parentRouter;
 
@@ -46,8 +57,7 @@ public class NodeRouter : Router {
             .Subscribe(
                 plan => {
                     Debug.Log("NodeRouter(Enter): " + nodeName);
-                    triggers.onEnter.Invoke();
-                    if (activates != null) { activates.SetActive(true); }
+                    triggers.OnEnter();
                     ProceedEnter(plan, 1);
                 })
             .AddTo(this);
@@ -58,8 +68,7 @@ public class NodeRouter : Router {
                 plan => {
                     Debug.Log("NodeRouter(Leave): " + nodeName);
                     ProceedLeave(plan, 1);
-                    if (activates != null) { activates.SetActive(false); }
-                    triggers.onLeave.Invoke();
+                    triggers.OnLeave();
                 })
             .AddTo(this);
     }

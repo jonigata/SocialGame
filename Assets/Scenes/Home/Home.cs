@@ -19,16 +19,10 @@ public class Home : MonoBehaviour {
         SceneManager.LoadScene(standardHeader, LoadSceneMode.Additive);
         SceneManager.LoadScene(standardFooter, LoadSceneMode.Additive);
 
-        SceneManager.LoadScene(storyPage, LoadSceneMode.Additive);
-        SceneManager.LoadScene(coordinatePage, LoadSceneMode.Additive);
-        SceneManager.LoadScene(trainingPage, LoadSceneMode.Additive);
-        SceneManager.LoadScene(socialPage, LoadSceneMode.Additive);
-        SceneManager.LoadScene(shopPage, LoadSceneMode.Additive);
-
-        pageGroup.SetPages(FindObjectsOfType<HomePage>());
     }
 
     void Start() {
+        pageGroup.SetPages(FindObjectsOfType<HomePage>());
         Services.FullScreenFadeIn();
     }
 }

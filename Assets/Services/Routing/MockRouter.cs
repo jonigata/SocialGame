@@ -6,12 +6,13 @@ using UnityEngine.Assertions;
 using UniRx;
 
 public class MockRouter : Router {
+    [SerializeField] Router parentRouter;
     [SerializeField] string leadPath;
 
     void Start() {
         var lp = leadPath.Split('/');
 
-        mount
+        parentRouter.mount
             .Where(x => Match(x.path, lp))
             .Subscribe(
                 mount => {
@@ -21,7 +22,7 @@ public class MockRouter : Router {
                 })
             .AddTo(this);
 
-        enter
+        parentRouter.enter
             .Where(x => Match(x.path, lp))
             .Subscribe(
                 plan => {
@@ -30,10 +31,10 @@ public class MockRouter : Router {
                 })
             .AddTo(this);
 
-        leave
+        parentRouter.leave
             .Subscribe(
                 plan => {
-                    Debug.Log("NodeRouter(Leave)");
+                    Debug.Log("MockRouter(Leave)");
                     ProceedLeave(plan, lp.Length);
                 })
             .AddTo(this);

@@ -7,6 +7,7 @@ public class StartJump : MonoBehaviour {
     [SerializeField] string path;
 
     void Start() {
+        Debug.Log("StartJump.JumpTo " + path);
         TopLevelRouter.JumpTo(path);
     }
 }

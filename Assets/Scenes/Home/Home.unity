@@ -121,6 +121,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 131983707}
+  - component: {fileID: 131983710}
   - component: {fileID: 131983709}
   - component: {fileID: 131983708}
   m_Layer: 0
@@ -167,7 +168,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3f638a76c2c2e438bb2a392851743d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRouter: {fileID: 131983710}
   leadPath: Home
+--- !u!114 &131983710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 131983706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f8570371825524e9084e4fad4df8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &224275492
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &376706085
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +261,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 376706084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
+  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggers:
@@ -262,7 +275,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 0}
+    activateTarget: {fileID: 0}
+  scene:
+    m_SceneName: CoordinatePage
+  mode: 1
 --- !u!1 &388880229
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +435,7 @@ GameObject:
   - component: {fileID: 542187167}
   - component: {fileID: 542187166}
   m_Layer: 0
-  m_Name: Router
+  m_Name: HomeRouter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,6 +452,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af11c1f3b68c40d498e6ae9a0a889e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggers:
+    onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    activateTarget: {fileID: 0}
   mountTo: Home
 --- !u!4 &542187167
 Transform:
@@ -453,7 +481,7 @@ Transform:
   - {fileID: 1939768757}
   - {fileID: 871477888}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &673726175
 GameObject:
@@ -492,7 +520,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 673726175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
+  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggers:
@@ -506,7 +534,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 0}
+    activateTarget: {fileID: 0}
+  scene:
+    m_SceneName: StoryPage
+  mode: 1
 --- !u!1 &807853291
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2472b2c24588f644297db5d017a9ed2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Home/Shop
+  path: Home/Story
 --- !u!1 &871477887
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &871477888
 Transform:
   m_ObjectHideFlags: 0
@@ -585,7 +616,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 871477887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
+  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggers:
@@ -599,7 +630,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 0}
+    activateTarget: {fileID: 0}
+  scene:
+    m_SceneName: ShopPage
+  mode: 1
 --- !u!1 &1053764329
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +662,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1053764331
 MonoBehaviour:
@@ -775,7 +809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1718823768
 Transform:
   m_ObjectHideFlags: 0
@@ -797,7 +831,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1718823767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
+  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggers:
@@ -811,7 +845,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 0}
+    activateTarget: {fileID: 0}
+  scene:
+    m_SceneName: TrainingPage
+  mode: 1
 --- !u!1001 &1781949936
 Prefab:
   m_ObjectHideFlags: 0
@@ -869,7 +906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1939768757
 Transform:
   m_ObjectHideFlags: 0
@@ -891,7 +928,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939768756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
+  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggers:
@@ -905,4 +942,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 0}
+    activateTarget: {fileID: 0}
+  scene:
+    m_SceneName: SocialPage
+  mode: 1

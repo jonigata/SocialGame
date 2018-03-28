@@ -37,12 +37,14 @@ public class TopLevelRouter : MockUpToolBase {
                 keep++;
             }
 
+            Debug.Log("TopLevelRouter.leave");
             var prevPlan = new Plan();
             prevPlan.path = prevPath;
             prevPlan.keep = keep;
             self.concreteRouter.leave.OnNext(prevPlan);
         }
 
+        Debug.Log("TopLevelRouter.enter");
         var currPlan = new Plan();
         currPlan.path = new ArraySegment<string>(currPath, 0, currPath.Length);
         currPlan.keep = keep;
