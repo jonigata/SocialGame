@@ -679,7 +679,7 @@ RectTransform:
   - {fileID: 956090781}
   - {fileID: 1635683998}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -809,7 +809,7 @@ RectTransform:
   - {fileID: 2118539264}
   - {fileID: 1766023813}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -914,7 +914,7 @@ Transform:
   - {fileID: 1201592357}
   - {fileID: 1139977842}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &554496761
 MonoBehaviour:
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2472b2c24588f644297db5d017a9ed2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Title/Page1
+  path: Title/Page2
 --- !u!1 &1182890465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1361,7 @@ RectTransform:
   - {fileID: 654170399}
   - {fileID: 526239771}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1376,6 +1376,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1201592357}
+  - component: {fileID: 1201592360}
   - component: {fileID: 1201592358}
   - component: {fileID: 1201592359}
   m_Layer: 0
@@ -1409,6 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3f638a76c2c2e438bb2a392851743d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRouter: {fileID: 1201592360}
   leadPath: Title
 --- !u!114 &1201592359
 MonoBehaviour:
@@ -1418,11 +1420,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1201592356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5178a6f309bee9942958e0d7dd1207cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 37383d83ebe05cb4bbcf4a8fccdccd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  concreteRouter: {fileID: 1201592358}
+  concreteRouter: {fileID: 1201592360}
+--- !u!114 &1201592360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201592356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f8570371825524e9084e4fad4df8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1324637222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,6 +1479,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af11c1f3b68c40d498e6ae9a0a889e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggers:
+    onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    activateTarget: {fileID: 0}
   mountTo: Title
 --- !u!1 &1423060359
 GameObject:
@@ -1518,7 +1543,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 2116368817}
+    activateTarget: {fileID: 2116368817}
 --- !u!1 &1543235558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1572,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1543235560
 MonoBehaviour:
@@ -1627,7 +1652,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 182087726}
+    activateTarget: {fileID: 182087726}
 --- !u!1 &1576123338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1972,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  activates: {fileID: 402776697}
+    activateTarget: {fileID: 402776697}
 --- !u!1 &2116368817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,7 +2003,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

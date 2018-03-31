@@ -32,7 +32,7 @@ public class NodeRouter : Router {
     Router parentRouter;
 
     void Start() {
-        Debug.Log("NodeRouter.Start");
+        Debug.LogFormat("NodeRouter({0}).Start", gameObject.name);
         if (transform.parent == null) { return; }
         parentRouter = transform.parent.GetComponent<Router>();
         if (parentRouter == null) { return; }
@@ -41,6 +41,8 @@ public class NodeRouter : Router {
     }
 
     public override void MountTo(Router parentRouter) {
+        Debug.LogFormat("NodeRouter({0}).MountTo", gameObject.name);
+
         var nodeName = gameObject.name;
 
         parentRouter.mount
