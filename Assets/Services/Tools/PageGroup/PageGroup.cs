@@ -13,6 +13,11 @@ public class PageGroup : MonoBehaviour {
     }
 
     public void Select(Transform page) {
+        if (page == null) {
+            Debug.Log("Page Select: none");
+        } else {
+            Debug.Log("Page Select: " + page.gameObject.name);
+        }
         foreach (var e in pages) {
             var f = e == page;
             if (f != e.gameObject.activeSelf) {
@@ -37,9 +42,14 @@ public class PageGroup : MonoBehaviour {
     }
 
     public void SetPages(Page[] pages) {
+        Debug.Log("SetPages");
         this.pages = pages.Select(x => x.transform).ToArray();
         foreach (var page in pages) {
             page.SetPageGroup(this);
+            var f = page == initialPage;
+            if (f != page.gameObject.activeSelf) {
+                page.gameObject.SetActive(f);
+            }
         }
     }
     

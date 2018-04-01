@@ -21,7 +21,15 @@ public class Router : MonoBehaviour {
             return path.Array[path.Offset] == s;
         }
         public void Print() {
-            Debug.Log(string.Join(",", path.ToArray()));
+            string s = "[";
+            for (int i = 0 ; i < path.Array.Length ; i++) {
+                if (i == path.Offset) { s += "<color=yellow>"; }
+                if (i == path.Offset + path.Count) { s += "</color>"; }
+                s += path.Array[i];
+                if (i != path.Array.Length - 1) { s += ","; }
+            }
+            s += "]";
+            Debug.Log(s);
         }
     }
 

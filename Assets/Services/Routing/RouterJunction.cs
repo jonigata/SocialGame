@@ -17,7 +17,10 @@ public class RouterJunction : NodeRouter {
     }
 
     public override void MountTo(Router parentRouter) {
-        Debug.Log("RouterJunction.MountTo: " + parentRouter.gameObject.name);
+        Debug.LogFormat(
+            "RouterJunction.Mount {0} To: {1}",
+            this.gameObject.name,
+            parentRouter.gameObject.name);
 
         // translucent
         parentRouter.mount
@@ -28,19 +31,25 @@ public class RouterJunction : NodeRouter {
             .AddTo(this);
 
         parentRouter.leave
+            .Where(plan => plan != null)
             .Subscribe(
                 plan => {
                     Debug.Log("RouterJunction.leave: " + gameObject.name);
+                    plan.Print();
                     this.leave.OnNext(plan);
+                    Debug.Log("RouterJunction.leave: triggers done");
                     triggers.OnLeave();
                 })
             .AddTo(this);
         
         parentRouter.enter
+            .Where(plan => plan != null)
             .Subscribe(
                 plan => {
                     Debug.Log("RouterJunction.enter: " + gameObject.name);
+                    plan.Print();
                     triggers.OnEnter();
+                    Debug.Log("RouterJunction.enter: triggers done");
                     this.enter.OnNext(plan);
                 })
             .AddTo(this);

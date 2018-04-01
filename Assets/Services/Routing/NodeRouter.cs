@@ -19,10 +19,20 @@ public class NodeRouter : Router {
 
         public void OnEnter() {
             onEnter.Invoke();
-            if (activateTarget != null) { activateTarget.SetActive(true); }
+            if (activateTarget != null) {
+                Debug.Log("activating: " + activateTarget.name);
+                activateTarget.SetActive(true);
+            } else {
+                Debug.Log("activating none");
+            }
         }
         public void OnLeave() {
-            if (activateTarget != null) { activateTarget.SetActive(false); }
+            if (activateTarget != null) {
+                Debug.Log("deactivating: " + activateTarget.name);
+                activateTarget.SetActive(false);
+            } else {
+                Debug.Log("deactivating none");
+            }
             onLeave.Invoke();
         }
     }
