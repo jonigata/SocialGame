@@ -13,7 +13,7 @@ public class MockRouter : Router {
         var lp = leadPath.Split('/');
 
         parentRouter.mount
-            .Where(x => Match(x.path, lp))
+            .Where(mount => mount != null && Match(mount.path, lp))
             .Subscribe(
                 mount => {
                     Debug.Log("MockRouter(Mount)");
@@ -25,6 +25,7 @@ public class MockRouter : Router {
             .AddTo(this);
 
         parentRouter.leave
+            .Where(plan => plan != null && Match(plan.path, lp))
             .Subscribe(
                 plan => {
                     Debug.Log("MockRouter(Leave)");
@@ -33,7 +34,7 @@ public class MockRouter : Router {
             .AddTo(this);
 
         parentRouter.enter
-            .Where(x => Match(x.path, lp))
+            .Where(plan => plan != null && Match(plan.path, lp))
             .Subscribe(
                 plan => {
                     Debug.Log("MockRouter(Enter)");

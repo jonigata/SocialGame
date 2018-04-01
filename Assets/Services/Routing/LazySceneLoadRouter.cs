@@ -22,7 +22,7 @@ public class LazySceneLoadRouter : Router {
         }
 
         parentRouter.mount
-            .Where(mount => mount.MatchHead(scene.name))
+            .Where(mount => mount != null && mount.MatchHead(scene.name))
             .Subscribe(
                 mount => {
                     Debug.Log("LazySceneLoadRouter.mount");
@@ -32,7 +32,7 @@ public class LazySceneLoadRouter : Router {
             .AddTo(this);
 
         parentRouter.leave
-            .Where(plan => plan.MatchHead(scene.name))
+            .Where(plan => plan != null && plan.MatchHead(scene.name))
             .Subscribe(
                 plan => {
                     Debug.Log("LazySceneLoadRouter.leave");
@@ -48,7 +48,7 @@ public class LazySceneLoadRouter : Router {
             .AddTo(this);
 
         parentRouter.enter
-            .Where(plan => plan.MatchHead(scene.name))
+            .Where(plan => plan != null && plan.MatchHead(scene.name))
             .Subscribe(
                 plan => {
                     Debug.Log("LazySceneLoadRouter.enter");

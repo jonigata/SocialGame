@@ -6,11 +6,16 @@ using UnityEngine;
 using UniRx;
 
 public class Router : MonoBehaviour {
-    public struct Plan {
+    public class Plan {
         public ArraySegment<string> path;
         public int                  keep;
+
+        public Plan(ArraySegment<string> path, int keep) {
+            this.path = path;
+            this.keep = keep;
+        }
         public bool MatchHead(string s) {
-            if (path.Array == null || path.Array.Length <= path.Offset ) {
+            if (path.Array.Length <= path.Offset ) {
                 return false;
             }
             return path.Array[path.Offset] == s;
@@ -20,11 +25,16 @@ public class Router : MonoBehaviour {
         }
     }
 
-    public struct Mount {
+    public class Mount {
         public ArraySegment<string>    path;
         public Router                  router;
+
+        public Mount(ArraySegment<string> path, Router router) {
+            this.path = path;
+            this.router = router;
+        }
         public bool MatchHead(string s) {
-            if (path.Array == null || path.Array.Length <= path.Offset ) {
+            if (path.Array.Length <= path.Offset ) {
                 return false;
             }
             return path.Array[path.Offset] == s;
@@ -32,19 +42,19 @@ public class Router : MonoBehaviour {
     }
 
     [NonSerialized] public BehaviorSubject<Plan> enter =
-        new BehaviorSubject<Plan>(new Plan());
+        new BehaviorSubject<Plan>(null);
     [NonSerialized] public BehaviorSubject<Plan> leave =
-        new BehaviorSubject<Plan>(new Plan());
+        new BehaviorSubject<Plan>(null);
     [NonSerialized] public BehaviorSubject<Mount> mount =
-        new BehaviorSubject<Mount>(new Mount());
+        new BehaviorSubject<Mount>(null);
 
     protected void Proceed(BehaviorSubject<Plan> subject, Plan plan, int n) {
         if (plan.path.Count < n) { return; }
 
-        var newPlan = new Plan();
-        newPlan.path = new ArraySegment<string>(
-            plan.path.Array, plan.path.Offset + n, plan.path.Count - n);
-        newPlan.keep = plan.keep - n;
+        var newPlan = new Plan(
+            new ArraySegment<string>(
+                plan.path.Array, plan.path.Offset + n, plan.path.Count - n),
+            plan.keep - n);
         subject.OnNext(newPlan);
     }
 
@@ -59,10 +69,10 @@ public class Router : MonoBehaviour {
     protected void ProceedMount(Mount mount, int n) {
         if (mount.path.Count < n) { return; }
 
-        var newMount = new Mount();
-        newMount.path = new ArraySegment<string>(
-            mount.path.Array, mount.path.Offset + n, mount.path.Count - n);
-        newMount.router = mount.router;
+        var newMount = new Mount(
+            new ArraySegment<string>(
+                mount.path.Array, mount.path.Offset + n, mount.path.Count - n),
+            mount.router);
         this.mount.OnNext(newMount);
     }
 

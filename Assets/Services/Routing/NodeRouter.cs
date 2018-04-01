@@ -46,7 +46,7 @@ public class NodeRouter : Router {
         var nodeName = gameObject.name;
 
         parentRouter.mount
-            .Where(mount => mount.MatchHead(nodeName))
+            .Where(mount => mount != null && mount.MatchHead(nodeName))
             .Subscribe(
                 mount => {
                     Debug.Log("NodeRouter(Mount)");
@@ -58,7 +58,7 @@ public class NodeRouter : Router {
             .AddTo(this);
 
         parentRouter.leave
-            .Where(plan => plan.MatchHead(nodeName))
+            .Where(plan => plan != null && plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
                     Debug.Log("NodeRouter(Leave): " + nodeName);
@@ -68,7 +68,7 @@ public class NodeRouter : Router {
             .AddTo(this);
 
         parentRouter.enter
-            .Where(plan => plan.MatchHead(nodeName))
+            .Where(plan => plan != null && plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
                     Debug.Log("NodeRouter(Enter): " + nodeName);

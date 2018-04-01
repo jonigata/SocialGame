@@ -39,25 +39,19 @@ public class Routing : MockUpToolBase {
             }
 
             Debug.Log("Routing.leave");
-            var prevPlan = new Plan();
-            prevPlan.path = prevPath;
-            prevPlan.keep = keep;
+            var prevPlan = new Plan(prevPath, keep);
             self.concreteRouter.leave.OnNext(prevPlan);
         }
 
         Debug.Log("Routing.enter");
-        var currPlan = new Plan();
-        currPlan.path = new ArraySegment<string>(currPath, 0, currPath.Length);
-        currPlan.keep = keep;
+        var currPlan = new Plan(new ArraySegment<string>(currPath), keep);
         prevPath = currPlan.path;
         self.concreteRouter.enter.OnNext(currPlan);
     }
 
     public static void Mount(string path, Router router) {
-        var mount = new Mount();
         var currPath = path.Split('/');
-        mount.path = new ArraySegment<string>(currPath, 0, currPath.Length);
-        mount.router = router;
+        var mount = new Mount(new ArraySegment<string>(currPath), router);
         self.concreteRouter.mount.OnNext(mount);
     }
 }
