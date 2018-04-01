@@ -6,20 +6,19 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class SceneLoadQueue : MonoBehaviour {
+public class TransitionQueue : MonoBehaviour {
     [SerializeField] SceneObject intermission;
     [SerializeField] Transition transition;
 
     public struct Request {
         public enum Type {
-            Load,
-            Unload,
+            In,
+            Out,
         }
-        public Type        type;
-        public SceneObject scene;
-        public LoadSceneMode mode;
-        public Action onDone;
-    }
+        public Type             type;
+        public Action           onPerform;
+        public Action           onDone;
+ }
 
     Queue<Request> q = new Queue<Request>();
     bool intermissionActive;
@@ -28,14 +27,11 @@ public class SceneLoadQueue : MonoBehaviour {
         StartCoroutine(Consume());
     }
 
-    public void Post(
-        Request.Type requestType, SceneObject scene, LoadSceneMode mode,
-        Action onDone) {
+    public void Post(Request.Type t, Action onPerform, Action onDone) {
         var r = new Request();
-        r.type = requestType;
-        r.scene = scene;
-        r.mode = mode;
-        r.onDone = onDone;
+        r.type = t;
+        r.onPerform = onPerform;
+        r.onDone  = onDone;
         q.Enqueue(r);
     }
 
@@ -46,21 +42,21 @@ public class SceneLoadQueue : MonoBehaviour {
             }
             var r = q.Dequeue();
             switch (r.type) {
-                case Request.Type.Load:
-                    SceneManager.LoadScene(r.scene, r.mode);
+                case Request.Type.In:
+                    r.onPerform();
                     yield return null;
                     UnloadIntermission();
                     if (transition != null) {
                         yield return transition.In();
                     }
                     break;
-                case Request.Type.Unload:
+                case Request.Type.Out:
                     if (transition != null) {
                         yield return transition.Out();
                     }
                     LoadIntermission();
                     yield return null;
-                    SceneManager.UnloadScene(r.scene);
+                    r.onPerform();
                     break;
             }
 

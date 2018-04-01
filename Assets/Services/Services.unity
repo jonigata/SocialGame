@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2822bb58f2380d04b9794d91865bcba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  queue: {fileID: 1175100235}
+  queue: {fileID: 1332195345}
   scene:
     m_SceneName: Home
   mode: 1
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2822bb58f2380d04b9794d91865bcba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  queue: {fileID: 1175100235}
+  queue: {fileID: 1332195345}
   scene:
     m_SceneName: Title
   mode: 1
@@ -356,7 +356,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1175100233}
-  - component: {fileID: 1175100235}
   - component: {fileID: 1175100236}
   - component: {fileID: 1175100234}
   m_Layer: 0
@@ -394,20 +393,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   concreteRouter: {fileID: 1175100236}
---- !u!114 &1175100235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1175100232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c7621be618ca945824a35ad62bd530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intermission:
-    m_SceneName: Intermission
-  fader: {fileID: 1332195344}
 --- !u!114 &1175100236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +520,7 @@ GameObject:
   - component: {fileID: 1332195342}
   - component: {fileID: 1332195343}
   - component: {fileID: 1332195344}
+  - component: {fileID: 1332195345}
   m_Layer: 0
   m_Name: Services
   m_TagString: Untagged
@@ -580,6 +566,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeIn: {fileID: 1187277955}
   fadeOut: {fileID: 63478906}
+--- !u!114 &1332195345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1332195341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b124706112de349b01c801f1944774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intermission:
+    m_SceneName: Intermission
+  transition: {fileID: 1332195344}
 --- !u!1 &1470746260
 GameObject:
   m_ObjectHideFlags: 0

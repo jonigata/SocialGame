@@ -7,7 +7,7 @@ using UniRx;
 using Zenject;
 
 public class LazySceneLoadRouter : Router {
-    [SerializeField] SceneLoadQueue queue;
+    [SerializeField] TransitionQueue queue;
     public SceneObject scene;
     [SerializeField] LoadSceneMode mode;
 
@@ -38,7 +38,8 @@ public class LazySceneLoadRouter : Router {
                     Debug.Log("LazySceneLoadRouter.leave");
                     if (plan.keep <= 0) {
                         queue.Post(
-                            SceneLoadQueue.Request.Type.Unload, scene, mode,
+                            TransitionQueue.Request.Type.Out,
+                            () => { SceneManager.UnloadScene(scene); },
                             () => { ProceedLeave(plan, 1); });
                     } else {
                         ProceedLeave(plan, 1);
@@ -54,7 +55,8 @@ public class LazySceneLoadRouter : Router {
                     ProceedEnter(plan, 1);
                     if (plan.keep <= 0) {
                         queue.Post(
-                            SceneLoadQueue.Request.Type.Load, scene, mode,
+                            TransitionQueue.Request.Type.In,
+                            () => { SceneManager.LoadScene(scene, mode); },
                             () => {});
                     }
                 })
