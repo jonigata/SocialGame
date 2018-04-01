@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Fader : MonoBehaviour {
+public class Fader : Transition {
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject fadeOut;
 
@@ -19,12 +19,12 @@ public class Fader : MonoBehaviour {
             () => a.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
     }
 
-    public IEnumerator In() {
+    public override IEnumerator In() {
         fadeOut.SetActive(false);
         yield return PlayFade(fadeIn);
     }
 
-    public IEnumerator Out() {
+    public override IEnumerator Out() {
         fadeIn.SetActive(false);
         yield return PlayFade(fadeOut);
     }

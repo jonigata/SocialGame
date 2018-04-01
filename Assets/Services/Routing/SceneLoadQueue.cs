@@ -8,7 +8,7 @@ using Zenject;
 
 public class SceneLoadQueue : MonoBehaviour {
     [SerializeField] SceneObject intermission;
-    [SerializeField] Fader fader;
+    [SerializeField] Transition transition;
 
     public struct Request {
         public enum Type {
@@ -50,10 +50,14 @@ public class SceneLoadQueue : MonoBehaviour {
                     SceneManager.LoadScene(r.scene, r.mode);
                     yield return null;
                     UnloadIntermission();
-                    yield return fader.In();
+                    if (transition != null) {
+                        yield return transition.In();
+                    }
                     break;
                 case Request.Type.Unload:
-                    yield return fader.Out();
+                    if (transition != null) {
+                        yield return transition.Out();
+                    }
                     LoadIntermission();
                     yield return null;
                     SceneManager.UnloadScene(r.scene);
@@ -66,14 +70,18 @@ public class SceneLoadQueue : MonoBehaviour {
 
     void LoadIntermission() {
         if (!intermissionActive) {
-            SceneManager.LoadScene(intermission, LoadSceneMode.Additive);
+            if (intermission != null) {
+                SceneManager.LoadScene(intermission, LoadSceneMode.Additive);
+            }
             intermissionActive = true;
         }
     }
 
     void UnloadIntermission() {
         if (intermissionActive) {
-            SceneManager.UnloadScene(intermission);
+            if (intermission != null) {
+                SceneManager.UnloadScene(intermission);
+            }
             intermissionActive = false;
         }
     }
