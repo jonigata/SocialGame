@@ -51,7 +51,12 @@ public class NodeRouter : Router {
     }
 
     public override void MountTo(Router parentRouter) {
-        Debug.LogFormat("NodeRouter({0}).MountTo", gameObject.name);
+        Debug.LogFormat(
+            "NodeRouter.Mount {0}({1}) To {2}({3})",
+            this.gameObject.name,
+            this.gameObject.scene.name,
+            parentRouter.gameObject.name,
+            parentRouter.gameObject.scene.name);
 
         var nodeName = gameObject.name;
 
@@ -59,8 +64,14 @@ public class NodeRouter : Router {
             .Where(mount => mount != null && mount.MatchHead(nodeName))
             .Subscribe(
                 mount => {
-                    Debug.Log("NodeRouter(Mount)");
                     if (mount.path.Count == 1) {
+                        Debug.LogFormat(
+                            "<color=green>NodeRouter.mount: {0}({1}) to {2}({3})</color>",
+                            mount.router.gameObject.name,
+                            mount.router.gameObject.scene.name,
+                            this.gameObject.name,
+                            this.gameObject.scene.name);
+                        mount.Print();
                         mount.router.MountTo(this);
                     }
                     ProceedMount(mount, 1);

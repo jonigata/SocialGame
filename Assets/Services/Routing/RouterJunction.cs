@@ -12,15 +12,17 @@ public class RouterJunction : NodeRouter {
     
     void Start() {
         // base.Start(); 必要ない
-        Debug.LogFormat("RouterJunction.Start {0}:{1}", gameObject.scene.name, gameObject.name);
+        Debug.LogFormat("RouterJunction.Start {0}({1})", gameObject.name, gameObject.scene.name);
         Routing.Mount(mountTo, this);
     }
 
     public override void MountTo(Router parentRouter) {
         Debug.LogFormat(
-            "RouterJunction.Mount {0} To: {1}",
+            "RouterJunction.Mount {0}({1}) To {2}({3})",
             this.gameObject.name,
-            parentRouter.gameObject.name);
+            this.gameObject.scene.name,
+            parentRouter.gameObject.name,
+            parentRouter.gameObject.scene.name);
 
         // translucent
         parentRouter.mount
@@ -34,7 +36,10 @@ public class RouterJunction : NodeRouter {
             .Where(plan => plan != null)
             .Subscribe(
                 plan => {
-                    Debug.Log("RouterJunction.leave: " + gameObject.name);
+                    Debug.LogFormat(
+                        "RouterJunction.leave: {0}({1})",
+                        gameObject.name,
+                        gameObject.scene.name);
                     plan.Print();
                     this.leave.OnNext(plan);
                     Debug.Log("RouterJunction.leave: triggers done");
@@ -46,7 +51,10 @@ public class RouterJunction : NodeRouter {
             .Where(plan => plan != null)
             .Subscribe(
                 plan => {
-                    Debug.Log("RouterJunction.enter: " + gameObject.name);
+                    Debug.LogFormat(
+                        "RouterJunction.enter: {0}({1})",
+                        gameObject.name,
+                        gameObject.scene.name);
                     plan.Print();
                     triggers.OnEnter();
                     Debug.Log("RouterJunction.enter: triggers done");

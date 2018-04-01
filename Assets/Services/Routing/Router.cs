@@ -6,6 +6,19 @@ using UnityEngine;
 using UniRx;
 
 public class Router : MonoBehaviour {
+    public static void PrintArraySegment(ArraySegment<string> path) {
+        string s = "[";
+        for (int i = 0 ; i <= path.Array.Length ; i++) {
+            if (i == path.Offset) { s += "<color=yellow>"; }
+            if (i == path.Offset + path.Count) { s += "</color>"; }
+            if (path.Array.Length <= i) { break; }
+            s += path.Array[i];
+            if (i != path.Array.Length - 1) { s += ","; }
+        }
+        s += "]";
+        Debug.Log(s);
+    }
+
     public class Plan {
         public ArraySegment<string> path;
         public int                  keep;
@@ -21,15 +34,7 @@ public class Router : MonoBehaviour {
             return path.Array[path.Offset] == s;
         }
         public void Print() {
-            string s = "[";
-            for (int i = 0 ; i < path.Array.Length ; i++) {
-                if (i == path.Offset) { s += "<color=yellow>"; }
-                if (i == path.Offset + path.Count) { s += "</color>"; }
-                s += path.Array[i];
-                if (i != path.Array.Length - 1) { s += ","; }
-            }
-            s += "]";
-            Debug.Log(s);
+            Router.PrintArraySegment(path);
         }
     }
 
@@ -46,6 +51,9 @@ public class Router : MonoBehaviour {
                 return false;
             }
             return path.Array[path.Offset] == s;
+        }
+        public void Print() {
+            Router.PrintArraySegment(path);
         }
     }
 

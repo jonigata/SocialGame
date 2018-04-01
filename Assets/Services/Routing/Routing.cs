@@ -31,7 +31,11 @@ public class Routing : MockUpToolBase {
 
         int keep = 0;
         if (prevPath.Array != null) {
-            for (int  i = 0 ; i < currPath.Length ; i++) {
+            Debug.Log(prevPath.Array.Length);
+            Debug.Log(prevPath.Offset);
+            Debug.Log(currPath.Length);
+            int n = System.Math.Min(prevPath.Count, currPath.Length); 
+            for (int  i = 0 ; i < n ; i++) {
                 if (currPath[i] != prevPath.Array[prevPath.Offset + i]) {
                     break;
                 }

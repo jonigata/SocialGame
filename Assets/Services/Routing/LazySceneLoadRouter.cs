@@ -25,8 +25,16 @@ public class LazySceneLoadRouter : Router {
             .Where(mount => mount != null && mount.MatchHead(scene.name))
             .Subscribe(
                 mount => {
-                    Debug.Log("LazySceneLoadRouter.mount");
-                    mount.router.MountTo(this);
+                    if (mount.path.Count == 1) {
+                        Debug.LogFormat(
+                            "<color=green>LazySceneLoadRouter.mount: {0}({1}) to {2}({3})</color>",
+                            mount.router.gameObject.name,
+                            mount.router.gameObject.scene.name,
+                            this.gameObject.name,
+                            this.gameObject.scene.name);
+                        mount.Print();
+                        mount.router.MountTo(this);
+                    }
                     ProceedMount(mount, 1);
                 })
             .AddTo(this);

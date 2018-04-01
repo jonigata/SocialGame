@@ -16,7 +16,7 @@ public class PageGroup : MonoBehaviour {
         if (page == null) {
             Debug.Log("Page Select: none");
         } else {
-            Debug.Log("Page Select: " + page.gameObject.name);
+            Debug.LogFormat("<color=yellow>Page Select: {0}({1})</color>", page.gameObject.name, page.gameObject.scene.name);
         }
         foreach (var e in pages) {
             var f = e == page;
@@ -42,6 +42,8 @@ public class PageGroup : MonoBehaviour {
     }
 
     public void SetPages(Page[] pages) {
+
+
         Debug.Log("SetPages");
         this.pages = pages.Select(x => x.transform).ToArray();
         foreach (var page in pages) {
