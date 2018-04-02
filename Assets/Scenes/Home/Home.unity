@@ -261,24 +261,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 376706084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
-  scene:
-    m_SceneName: CoordinatePage
-  mode: 1
+  trigger: {fileID: 0}
 --- !u!1 &388880229
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,18 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af11c1f3b68c40d498e6ae9a0a889e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
+  trigger: {fileID: 0}
   mountTo: Home
 --- !u!4 &542187167
 Transform:
@@ -520,24 +495,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 673726175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
-  scene:
-    m_SceneName: StoryPage
-  mode: 1
+  trigger: {fileID: 0}
 --- !u!1 &807853291
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,24 +577,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 871477887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
-  scene:
-    m_SceneName: ShopPage
-  mode: 1
+  trigger: {fileID: 0}
 --- !u!1 &1053764329
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,24 +778,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1718823767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
-  scene:
-    m_SceneName: TrainingPage
-  mode: 1
+  trigger: {fileID: 0}
 --- !u!1001 &1781949936
 Prefab:
   m_ObjectHideFlags: 0
@@ -928,21 +861,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939768756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec3ee6ce7fc6844c9c272edbebd14b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
-  scene:
-    m_SceneName: SocialPage
-  mode: 1
+  trigger: {fileID: 0}

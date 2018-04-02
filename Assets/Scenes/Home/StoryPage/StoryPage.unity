@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 690356438}
   - component: {fileID: 690356437}
+  - component: {fileID: 690356439}
   m_Layer: 5
   m_Name: StoryRouter
   m_TagString: Untagged
@@ -140,18 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af11c1f3b68c40d498e6ae9a0a889e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 2011224891}
+  trigger: {fileID: 690356439}
   mountTo: Home/Story
 --- !u!224 &690356438
 RectTransform:
@@ -171,6 +161,18 @@ RectTransform:
   m_AnchoredPosition: {x: 959.99994, y: 670.94336}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &690356439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690356436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee67d019e71714e4697c253c04981e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateTarget: {fileID: 2011224891}
 --- !u!1 &764901625
 GameObject:
   m_ObjectHideFlags: 0
