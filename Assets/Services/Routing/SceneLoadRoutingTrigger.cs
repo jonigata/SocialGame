@@ -6,11 +6,16 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class SceneLoadRouter : NodeRouter {
+public class SceneLoadRoutingTrigger : RoutingTrigger {
     public SceneObject scene;
     [SerializeField] LoadSceneMode mode;
 
-    void Awake() {
+    public override void OnEnter() {
         SceneManager.LoadScene(scene, mode);
     }
+
+    public override void OnLeave() {
+        SceneManager.UnloadScene(scene); 
+    }
+
 }

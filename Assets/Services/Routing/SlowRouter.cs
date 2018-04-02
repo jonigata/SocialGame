@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class TransitioningRouter : Router {
+public class SlowRouter : Router {
     [SerializeField] TransitionQueue queue;
+    [SerializeField] RoutingTrigger trigger;
 
     Router parentRouter;
 
@@ -48,7 +49,7 @@ public class TransitioningRouter : Router {
                     if (plan.keep <= 0) {
                         queue.Post(
                             TransitionQueue.Request.Type.Out,
-                            OnLeave,
+                            trigger.OnLeave,
                             () => { ProceedLeave(plan, 1); });
                     } else {
                         ProceedLeave(plan, 1);
@@ -65,18 +66,12 @@ public class TransitioningRouter : Router {
                     if (plan.keep <= 0) {
                         queue.Post(
                             TransitionQueue.Request.Type.In,
-                            OnEnter,
+                            trigger.OnEnter,
                             () => {});
                     }
                 })
             .AddTo(this);
 
-    }
-
-    public virtual void OnEnter() {
-    }
-
-    public virtual void OnLeave() {
     }
 
 }

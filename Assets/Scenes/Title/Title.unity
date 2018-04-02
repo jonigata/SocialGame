@@ -1479,18 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af11c1f3b68c40d498e6ae9a0a889e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 0}
+  trigger: {fileID: 0}
   mountTo: Title
 --- !u!1 &1423060359
 GameObject:
@@ -1501,6 +1490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1423060360}
   - component: {fileID: 1423060361}
+  - component: {fileID: 1423060362}
   m_Layer: 0
   m_Name: Page0
   m_TagString: Untagged
@@ -1532,18 +1522,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 2116368817}
+  trigger: {fileID: 1423060362}
+--- !u!114 &1423060362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423060359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee67d019e71714e4697c253c04981e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateTarget: {fileID: 2116368817}
 --- !u!1 &1543235558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552731351}
   - component: {fileID: 1552731352}
+  - component: {fileID: 1552731353}
   m_Layer: 0
   m_Name: Page1
   m_TagString: Untagged
@@ -1641,18 +1633,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 182087726}
+  trigger: {fileID: 1552731353}
+--- !u!114 &1552731353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552731350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee67d019e71714e4697c253c04981e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateTarget: {fileID: 182087726}
 --- !u!1 &1576123338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,6 +1923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1904121279}
   - component: {fileID: 1904121280}
+  - component: {fileID: 1904121281}
   m_Layer: 0
   m_Name: Page2
   m_TagString: Untagged
@@ -1961,18 +1955,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f195815b864435478a2b20dc30c6c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-    onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    activateTarget: {fileID: 402776697}
+  trigger: {fileID: 1904121281}
+--- !u!114 &1904121281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1904121278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee67d019e71714e4697c253c04981e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateTarget: {fileID: 402776697}
 --- !u!1 &2116368817
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,38 +6,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UniRx;
-using Zenject;
 
-public class NodeRouter : Router {
-    // TODO: TriggerableRouterを作る
-    [Serializable]
-    public struct Triggers {
-        public UnityEvent onEnter;
-        public UnityEvent onLeave;
-        public GameObject activateTarget;
-
-
-        public void OnEnter() {
-            onEnter.Invoke();
-            if (activateTarget != null) {
-                Debug.Log("activating: " + activateTarget.name);
-                activateTarget.SetActive(true);
-            } else {
-                Debug.Log("activating none");
-            }
-        }
-        public void OnLeave() {
-            if (activateTarget != null) {
-                Debug.Log("deactivating: " + activateTarget.name);
-                activateTarget.SetActive(false);
-            } else {
-                Debug.Log("deactivating none");
-            }
-            onLeave.Invoke();
-        }
-    }
-    
-    [SerializeField] protected Triggers triggers;
+public class FastRouter : Router {
+    [SerializeField] protected RoutingTrigger trigger;
     
     Router parentRouter;
 
@@ -84,7 +55,9 @@ public class NodeRouter : Router {
                 plan => {
                     Debug.Log("NodeRouter(Leave): " + nodeName);
                     ProceedLeave(plan, 1);
-                    triggers.OnLeave();
+                    if (trigger != null) {
+                        trigger.OnLeave();
+                    }
                 })
             .AddTo(this);
 
@@ -93,7 +66,9 @@ public class NodeRouter : Router {
             .Subscribe(
                 plan => {
                     Debug.Log("NodeRouter(Enter): " + nodeName);
-                    triggers.OnEnter();
+                    if (trigger != null) {
+                        trigger.OnEnter();
+                    }
                     ProceedEnter(plan, 1);
                 })
             .AddTo(this);

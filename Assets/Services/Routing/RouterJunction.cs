@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UniRx;
 using Zenject;
 
-public class RouterJunction : NodeRouter {
+public class RouterJunction : FastRouter {
     [SerializeField] string mountTo;
     
     void Start() {
@@ -43,7 +43,9 @@ public class RouterJunction : NodeRouter {
                     plan.Print();
                     this.leave.OnNext(plan);
                     Debug.Log("RouterJunction.leave: triggers done");
-                    triggers.OnLeave();
+                    if (trigger != null) {
+                        trigger.OnLeave();
+                    }
                 })
             .AddTo(this);
         
@@ -56,7 +58,9 @@ public class RouterJunction : NodeRouter {
                         gameObject.name,
                         gameObject.scene.name);
                     plan.Print();
-                    triggers.OnEnter();
+                    if (trigger != null) {
+                        trigger.OnEnter();
+                    }
                     Debug.Log("RouterJunction.enter: triggers done");
                     this.enter.OnNext(plan);
                 })
