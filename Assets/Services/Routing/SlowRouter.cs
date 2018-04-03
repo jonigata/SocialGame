@@ -49,8 +49,12 @@ public class SlowRouter : Router {
                     if (plan.keep <= 0) {
                         queue.Post(
                             TransitionQueue.Request.Type.Out,
-                            trigger.OnLeave,
-                            () => { ProceedLeave(plan, 1); });
+                            () => {
+                            },
+                            () => {
+                                ProceedLeave(plan, 1);
+                                if (trigger != null) { trigger.OnLeave(); }
+                            });
                     } else {
                         ProceedLeave(plan, 1);
                     }
@@ -62,12 +66,17 @@ public class SlowRouter : Router {
             .Subscribe(
                 plan => {
                     Debug.Log("LazySceneLoadRouter.enter");
-                    ProceedEnter(plan, 1);
                     if (plan.keep <= 0) {
                         queue.Post(
                             TransitionQueue.Request.Type.In,
-                            trigger.OnEnter,
-                            () => {});
+                            () => {
+                                if (trigger != null) { trigger.OnEnter(); }
+                                ProceedEnter(plan, 1);
+                            },
+                            () => {
+                            });
+                    } else {
+                        ProceedEnter(plan, 1);
                     }
                 })
             .AddTo(this);

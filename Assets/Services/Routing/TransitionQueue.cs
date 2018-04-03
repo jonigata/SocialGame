@@ -16,8 +16,8 @@ public class TransitionQueue : MonoBehaviour {
             Out,
         }
         public Type             type;
-        public Action           onPerform;
-        public Action           onDone;
+        public Action           before;
+        public Action           after;
  }
 
     Queue<Request> q = new Queue<Request>();
@@ -27,11 +27,11 @@ public class TransitionQueue : MonoBehaviour {
         StartCoroutine(Consume());
     }
 
-    public void Post(Request.Type t, Action onPerform, Action onDone) {
+    public void Post(Request.Type t, Action before, Action after) {
         var r = new Request();
         r.type = t;
-        r.onPerform = onPerform;
-        r.onDone  = onDone;
+        r.before = before;
+        r.after  = after;
         q.Enqueue(r);
     }
 
@@ -43,30 +43,30 @@ public class TransitionQueue : MonoBehaviour {
             var r = q.Dequeue();
             switch (r.type) {
                 case Request.Type.In:
-                    r.onPerform();
+                    r.before();
                     yield return null;
                     UnloadIntermission();
                     if (transition != null) {
                         yield return transition.In();
                     }
+                    r.after();
                     break;
                 case Request.Type.Out:
+                    r.before();
                     if (transition != null) {
                         yield return transition.Out();
                     }
                     LoadIntermission();
                     yield return null;
-                    r.onPerform();
+                    r.after();
                     break;
             }
-
-            r.onDone();
         }
     }
 
     void LoadIntermission() {
         if (!intermissionActive) {
-            if (intermission != null) {
+            if (!string.IsNullOrEmpty(intermission)) {
                 SceneManager.LoadScene(intermission, LoadSceneMode.Additive);
             }
             intermissionActive = true;
@@ -75,7 +75,7 @@ public class TransitionQueue : MonoBehaviour {
 
     void UnloadIntermission() {
         if (intermissionActive) {
-            if (intermission != null) {
+            if (!string.IsNullOrEmpty(intermission)) {
                 SceneManager.UnloadScene(intermission);
             }
             intermissionActive = false;

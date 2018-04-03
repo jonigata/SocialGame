@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223365026705893266}
   - component: {fileID: 114334809982780876}
   - component: {fileID: 114510660608915034}
-  - component: {fileID: 114726563950715540}
+  - component: {fileID: 114955927832117912}
   m_Layer: 5
   m_Name: FadeInMask
   m_TagString: Untagged
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114726563950715540
+--- !u!114 &114955927832117912
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,10 +137,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1776574544116720}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc10c26c9bf8a34b9a79bcf227e5e24, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d49e6feb7fc09d409e705e362780c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activate: 0
 --- !u!222 &222396839424978086
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -45,11 +45,12 @@ public class Routing : MockUpToolBase {
             Debug.Log("Routing.leave");
             var prevPlan = new Plan(prevPath, keep);
             self.concreteRouter.leave.OnNext(prevPlan);
+            Debug.Log("Routing.leave done");
         }
 
         Debug.Log("Routing.enter");
         var currPlan = new Plan(new ArraySegment<string>(currPath), keep);
-        prevPath = currPlan.path;
+ prevPath = currPlan.path;
         self.concreteRouter.enter.OnNext(currPlan);
     }
 
