@@ -42,8 +42,6 @@ public class PageGroup : MonoBehaviour {
     }
 
     public void SetPages(Page[] pages) {
-
-
         Debug.Log("SetPages");
         this.pages = pages.Select(x => x.transform).ToArray();
         foreach (var page in pages) {

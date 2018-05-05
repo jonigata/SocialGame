@@ -26,6 +26,14 @@ public class Routing : MockUpToolBase {
     }
 
     public static void JumpTo(string path) {
+        if (path.Length == 0) {
+            throw new ArgumentException("Can't jump with null path");
+        }
+        if (path[0] != '/') {
+            throw new ArgumentException("Path must start with '/'");
+        }
+        path = path.Substring(1);
+
         Debug.Log("Routing.JumpTo: " + path);
         var currPath = path.Split('/');
 
@@ -50,7 +58,7 @@ public class Routing : MockUpToolBase {
 
         Debug.Log("Routing.enter");
         var currPlan = new Plan(new ArraySegment<string>(currPath), keep);
- prevPath = currPlan.path;
+        prevPath = currPlan.path;
         self.concreteRouter.enter.OnNext(currPlan);
     }
 
@@ -59,4 +67,5 @@ public class Routing : MockUpToolBase {
         var mount = new Mount(new ArraySegment<string>(currPath), router);
         self.concreteRouter.mount.OnNext(mount);
     }
+
 }
