@@ -37,6 +37,7 @@ public class Routing : MockUpToolBase {
         Debug.Log("Routing.JumpTo: " + path);
         var currPath = path.Split('/');
 
+        // leave
         int keep = 0;
         if (prevPath.Array != null) {
             Debug.Log(prevPath.Array.Length);
@@ -56,6 +57,7 @@ public class Routing : MockUpToolBase {
             Debug.Log("Routing.leave done");
         }
 
+        // enter
         Debug.Log("Routing.enter");
         var currPlan = new Plan(new ArraySegment<string>(currPath), keep);
         prevPath = currPlan.path;

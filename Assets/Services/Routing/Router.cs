@@ -6,6 +6,8 @@ using UnityEngine;
 using UniRx;
 
 public class Router : MonoBehaviour {
+    Router parentRouter;
+
     public static void PrintArraySegment(ArraySegment<string> path) {
         string s = "[";
         for (int i = 0 ; i <= path.Array.Length ; i++) {
@@ -17,6 +19,15 @@ public class Router : MonoBehaviour {
         }
         s += "]";
         Debug.Log(s);
+    }
+
+    void Start() {
+        Debug.LogFormat("Router({0}).Start", gameObject.name);
+        if (transform.parent == null) { return; }
+        parentRouter = transform.parent.GetComponent<Router>();
+        if (parentRouter == null) { return; }
+
+        MountTo(parentRouter);
     }
 
     public class Plan {
@@ -58,6 +69,7 @@ public class Router : MonoBehaviour {
     }
 
     [NonSerialized] public BehaviorSubject<Plan> enter =
+
         new BehaviorSubject<Plan>(null);
     [NonSerialized] public BehaviorSubject<Plan> leave =
         new BehaviorSubject<Plan>(null);
@@ -92,6 +104,52 @@ public class Router : MonoBehaviour {
         this.mount.OnNext(newMount);
     }
 
-    public virtual void MountTo(Router router) {}
+    public virtual void MountTo(Router parentRouter) {
+        Debug.LogFormat(
+            "Router.Mount {0}({1}) To {2}({3})",
+            this.gameObject.name,
+            this.gameObject.scene.name,
+            parentRouter.gameObject.name,
+            parentRouter.gameObject.scene.name);
+
+        var nodeName = gameObject.name;
+
+        parentRouter.mount
+            .Where(mount => mount != null && mount.MatchHead(nodeName))
+            .Subscribe(
+                mount => {
+                    if (mount.path.Count == 1) {
+                        Debug.LogFormat(
+                            "<color=green>Router.mount: {0}({1}) to {2}({3})</color>",
+                            mount.router.gameObject.name,
+                            mount.router.gameObject.scene.name,
+                            this.gameObject.name,
+                            this.gameObject.scene.name);
+                        mount.Print();
+                        mount.router.MountTo(this);
+                    }
+                    ProceedMount(mount, 1);
+                })
+            .AddTo(this);
+
+        parentRouter.leave
+            .Where(plan => plan != null && plan.MatchHead(nodeName))
+            .Subscribe(
+                plan => {
+                    Debug.Log("Router(Leave): " + nodeName);
+                    ProceedLeave(plan, 1);
+                })
+            .AddTo(this);
+
+        parentRouter.enter
+            .Where(plan => plan != null && plan.MatchHead(nodeName))
+            .Subscribe(
+                plan => {
+                    Debug.Log("Router(Enter): " + nodeName);
+                    ProceedEnter(plan, 1);
+                })
+            .AddTo(this);
+
+    }
 
 }

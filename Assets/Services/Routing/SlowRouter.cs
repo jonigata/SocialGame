@@ -16,7 +16,7 @@ public class SlowRouter : Router {
         parentRouter = transform.parent.GetComponent<Router>();
         if (parentRouter == null) {
             Debug.LogWarningFormat(
-                "TransitioningRouter '{0}' has no parent Router",
+                "SlowRouter '{0}' has no parent Router",
                 gameObject.name);
             return;
         }
@@ -29,7 +29,7 @@ public class SlowRouter : Router {
                 mount => {
                     if (mount.path.Count == 1) {
                         Debug.LogFormat(
-                            "<color=green>LazySceneLoadRouter.mount: {0}({1}) to {2}({3})</color>",
+                            "<color=green>SlowRouter.mount: {0}({1}) to {2}({3})</color>",
                             mount.router.gameObject.name,
                             mount.router.gameObject.scene.name,
                             this.gameObject.name,
@@ -45,7 +45,7 @@ public class SlowRouter : Router {
             .Where(plan => plan != null && plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
-                    Debug.Log("LazySceneLoadRouter.leave");
+                    Debug.Log("SlowRouter.leave");
                     if (plan.keep <= 0) {
                         queue.Post(
                             TransitionQueue.Request.Type.Out,
@@ -65,7 +65,7 @@ public class SlowRouter : Router {
             .Where(plan => plan != null && plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
-                    Debug.Log("LazySceneLoadRouter.enter");
+                    Debug.Log("SlowRouter.enter");
                     if (plan.keep <= 0) {
                         queue.Post(
                             TransitionQueue.Request.Type.In,

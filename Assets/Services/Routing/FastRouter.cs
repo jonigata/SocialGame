@@ -13,7 +13,7 @@ public class FastRouter : Router {
     Router parentRouter;
 
     void Start() {
-        Debug.LogFormat("NodeRouter({0}).Start", gameObject.name);
+        Debug.LogFormat("FastRouter({0}).Start", gameObject.name);
         if (transform.parent == null) { return; }
         parentRouter = transform.parent.GetComponent<Router>();
         if (parentRouter == null) { return; }
@@ -23,7 +23,7 @@ public class FastRouter : Router {
 
     public override void MountTo(Router parentRouter) {
         Debug.LogFormat(
-            "NodeRouter.Mount {0}({1}) To {2}({3})",
+            "FastRouter.Mount {0}({1}) To {2}({3})",
             this.gameObject.name,
             this.gameObject.scene.name,
             parentRouter.gameObject.name,
@@ -37,7 +37,7 @@ public class FastRouter : Router {
                 mount => {
                     if (mount.path.Count == 1) {
                         Debug.LogFormat(
-                            "<color=green>NodeRouter.mount: {0}({1}) to {2}({3})</color>",
+                            "<color=green>FastRouter.mount: {0}({1}) to {2}({3})</color>",
                             mount.router.gameObject.name,
                             mount.router.gameObject.scene.name,
                             this.gameObject.name,
@@ -53,7 +53,7 @@ public class FastRouter : Router {
             .Where(plan => plan != null && plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
-                    Debug.Log("NodeRouter(Leave): " + nodeName);
+                    Debug.Log("FastRouter(Leave): " + nodeName);
                     ProceedLeave(plan, 1);
                     if (trigger != null) {
                         trigger.OnLeave();
@@ -65,7 +65,7 @@ public class FastRouter : Router {
             .Where(plan => plan != null && plan.MatchHead(nodeName))
             .Subscribe(
                 plan => {
-                    Debug.Log("NodeRouter(Enter): " + nodeName);
+                    Debug.Log("FastRouter(Enter): " + nodeName);
                     if (trigger != null) {
                         trigger.OnEnter();
                     }
