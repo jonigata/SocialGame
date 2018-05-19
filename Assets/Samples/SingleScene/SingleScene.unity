@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 249594453}
   - component: {fileID: 249594452}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PageAButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 293437412}
   - component: {fileID: 293437411}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,7 +814,6 @@ GameObject:
   - component: {fileID: 848498659}
   - component: {fileID: 848498658}
   - component: {fileID: 848498657}
-  - component: {fileID: 848498656}
   m_Layer: 5
   m_Name: PageA
   m_TagString: Untagged
@@ -822,18 +821,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &848498656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 848498655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cfb701edea9d254baf4ec12883188ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: {fileID: 1706289400}
 --- !u!114 &848498657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,7 +889,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1907781652}
-  - {fileID: 1348877881}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -923,7 +909,7 @@ GameObject:
   - component: {fileID: 914233753}
   - component: {fileID: 914233752}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: PageBButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1125,7 +1111,7 @@ GameObject:
   - component: {fileID: 1153834905}
   - component: {fileID: 1153834904}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: PageCButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1289,39 +1275,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1197574117}
---- !u!1 &1348877880
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1348877881}
-  m_Layer: 5
-  m_Name: Routing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1348877881
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1348877880}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 848498660}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1370392219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1286,6 @@ GameObject:
   - component: {fileID: 1370392223}
   - component: {fileID: 1370392222}
   - component: {fileID: 1370392221}
-  - component: {fileID: 1370392220}
   m_Layer: 5
   m_Name: PageC
   m_TagString: Untagged
@@ -1341,18 +1293,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1370392220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1370392219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cfb701edea9d254baf4ec12883188ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: {fileID: 1706289400}
 --- !u!114 &1370392221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,51 +1369,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1706289399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1706289401}
-  - component: {fileID: 1706289400}
-  m_Layer: 0
-  m_Name: PageGroup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1706289400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1706289399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff66fb1cf9f4d70489d7c0a89e46bd9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pages:
-  - {fileID: 848498660}
-  - {fileID: 1830969585}
-  - {fileID: 1370392224}
-  initialPage: {fileID: 848498660}
---- !u!4 &1706289401
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1706289399}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 617.13245, y: 427.70282, z: 15.875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830969580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1380,6 @@ GameObject:
   - component: {fileID: 1830969584}
   - component: {fileID: 1830969583}
   - component: {fileID: 1830969582}
-  - component: {fileID: 1830969581}
   m_Layer: 5
   m_Name: PageB
   m_TagString: Untagged
@@ -1493,18 +1387,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1830969581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1830969580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cfb701edea9d254baf4ec12883188ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: {fileID: 1706289400}
 --- !u!114 &1830969582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,7 +1741,7 @@ RectTransform:
   m_Children:
   - {fileID: 293437410}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
